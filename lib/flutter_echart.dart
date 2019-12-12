@@ -5,18 +5,22 @@ import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'flutter_native_web.dart';
+
 //Echarts
 class EchartView extends StatelessWidget {
-  EchartView({Key key, this.height, this.data, this.child}) : super(key: key);
+  EchartView(
+      {Key key, this.height, this.data, this.child, this.backgroundColor})
+      : super(key: key);
   final Map data;
   final double height;
   final Widget child;
+  Color backgroundColor;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: height,
-      color: Colors.white,
+      color: color,
       child: Echarts(data: data, child: child),
     );
   }
@@ -34,7 +38,6 @@ class Echarts extends StatefulWidget {
 }
 
 class _EchartsState extends State<Echarts> {
-
   WebController webController;
 
   bool finished = false;
@@ -67,16 +70,12 @@ class _EchartsState extends State<Echarts> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-        overflow: Overflow.clip,
-        children: <Widget>[
-          widget.child ??
-              const Center(child: const CircularProgressIndicator()),
-          AnimatedOpacity(
-              duration: Duration(milliseconds: 300),
-              opacity: finished ? 1.0 : 0.0,
-              child: FlutterNativeWeb(
-                  onWebCreated: onWebCreated))
-        ]);
+    return Stack(overflow: Overflow.clip, children: <Widget>[
+      widget.child ?? const Center(child: const CircularProgressIndicator()),
+      AnimatedOpacity(
+          duration: Duration(milliseconds: 300),
+          opacity: finished ? 1.0 : 0.0,
+          child: FlutterNativeWeb(onWebCreated: onWebCreated))
+    ]);
   }
 }
