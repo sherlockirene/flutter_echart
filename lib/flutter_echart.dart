@@ -14,7 +14,7 @@ class EchartView extends StatelessWidget {
   final Map data;
   final double height;
   final Widget child;
-  Color backgroundColor;
+  final Color backgroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -73,9 +73,9 @@ class _EchartsState extends State<Echarts> {
     return Stack(overflow: Overflow.clip, children: <Widget>[
       widget.child ?? const Center(child: const CircularProgressIndicator()),
       AnimatedOpacity(
-          duration: Duration(milliseconds: 300),
+          duration: Duration(milliseconds: 3000),
           opacity: finished ? 1.0 : 0.0,
-          child: FlutterNativeWeb(onWebCreated: onWebCreated))
+          child: Container(child: FlutterNativeWeb(onWebCreated: onWebCreated)))
     ]);
   }
 }
