@@ -20,7 +20,7 @@ class EchartView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: height,
-      color: color,
+      color: backgroundColor,
       child: Echarts(data: data, child: child),
     );
   }
