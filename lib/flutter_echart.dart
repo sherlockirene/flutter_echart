@@ -73,9 +73,14 @@ class _EchartsState extends State<Echarts> {
     return Stack(overflow: Overflow.clip, children: <Widget>[
       widget.child ?? const Center(child: const CircularProgressIndicator()),
       AnimatedOpacity(
-          duration: Duration(milliseconds: 300),
-          opacity: finished ? 1.0 : 0.0,
-          child: Container(child: FlutterNativeWeb(onWebCreated: onWebCreated)))
+        duration: Duration(milliseconds: 300),
+        opacity: finished ? 1.0 : 0.0,
+        child: Container(
+          child: FlutterNativeWeb(
+            onWebCreated: onWebCreated,
+          ),
+        ),
+      )
     ]);
   }
 }
